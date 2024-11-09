@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+
+{% block contenido %}
+
+    <main class="container">
+        <section>
+            <h3 class="text-center py-5">Eliminar el vehículo {{vehiculo.marca}} {{vehiculo.modelo}}, año {{vehiculo.year}}, serial {{vehiculo.serial_motor}}.</h3>
+        </section>
+
+        <section>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-5">
+                    <form method="post" id="form_delete">
+                        {% csrf_token %}
+                        {{form}}
+                        <div>
+                            <input type="submit" class="btn btn-danger" value="Eliminar"> 
+                        </div>
+                    </form>
+
+                    <div>
+                        <a href="{% url 'listar' %}" class="btn btn-primary">Volver al listado</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <script>
+        const form_delete = document.getElementById("form_delete")
+    
+        form_delete.addEventListener("submit", (event)=> {
+            event.preventDefault();
+
+            let confirmacion = confirm("Está seguro que desea eliminar al registro?")
+            
+            if(confirmacion){
+                form_delete.submit()
+            }
+        })
+    </script>
+
+
+{% endblock  %}

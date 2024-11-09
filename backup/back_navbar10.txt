@@ -1,0 +1,25 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-black">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" id="opciones">
+        {% if user.is_authenticated %}
+          {% if user.is_superuser %}
+            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="/listar">Listar</a>
+            {% elif user.groups.filter(name='Usuarios_crud').exists() %}
+            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="/listar">Listar</a>
+            {% elif user.groups.filter(name='Usuarios_std').exists() %}
+            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="/listar">Listar</a>
+          {% endif %}
+          <a class="navbar-text">Bienvenido, {{ user.username }}</a>
+          <a class="nav-link text-white" href="{% url 'logout_view' %}">Logout</a>
+        {% else %}
+          <a class="nav-link" href="{% url 'login_view' %}">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

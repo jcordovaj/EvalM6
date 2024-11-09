@@ -1,0 +1,95 @@
+ANTES DE DIVIDIR EL NAVBAR
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Sistema VVVFS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/">Inicio</a>
+        <a class="nav-link" href="/vehiculos/add">Agregar</a>
+        <a class="nav-link" href="/listar">Listar</a>
+        <a class="nav-link" href="/vehiculos/galeria">Galeria</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+dos columnas, sin texto ni logo **********
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid d-flex justify-content-between">  <div class="navbar-nav">
+      <a class="nav-link" aria-current="page" href="/">Inicio</a>
+      <a class="nav-link" href="/vehiculos/add">Agregar</a>
+      <a class="nav-link" href="/listar">Listar</a>
+      <a class="nav-link" href="/vehiculos/galeria">Galeria</a>
+  </div>
+  <div class="navbar-nav user-column"> 
+      <span class="navbar-text">Bienvenido, {{ user }}</span> 
+      <a class="nav-link" href="/logout">Salir</a>
+  </div>
+  </div>
+</nav>
+
+alternativa con imagen y nombre más opciones, pero queda centrado ***********
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand" href="#" id="mi-brand">
+      <img src="{% static 'imgs/auto_verde.png' %}" alt="Sistema VVVFS" height="20">
+      <span class="navbar-text">Sistema VVVFS</span>
+    </a>
+    <div class="navbar-nav" id="opciones">
+      <a class="nav-link" aria-current="page" href="/">Inicio</a>
+      <a class="nav-link" href="/vehiculos/add">Agregar</a>
+      <a class="nav-link" href="/listar">Listar</a>
+      <a class="nav-link" href="/vehiculos/galeria">Galeria</a>
+    </div>
+    <div class="navbar-nav user-column">
+      <span class="navbar-text">Bienvenido, {{ user }}</span>
+      <a class="nav-link" href="/logout">Salir</a>
+    </div>
+  </div>
+</nav>
+
+ELIMINAMOS GALERIA ************************
+{% load static %}
+            
+<nav class="navbar navbar-expand-lg bg-black">
+  <div class="container-fluid">
+      <a class="navbar-brand text-white" href="{% url 'index' %}">
+        <img src="{% static 'imgs/auto_verde.png' %}" alt="Sistema Vehículos" height="20">
+      <span class="navbar-text">Sist. Vehículos VVVFS</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav" id="opciones">
+          <a class="nav-link" aria-current="page" href="/">Inicio</a>
+          <a class="nav-link" href="/vehiculos/add">Agregar</a>
+          <a class="nav-link" href="/listar">Listar</a>
+          <a class="nav-link" href="/vehiculos/galeria">Galeria</a>
+        </div>
+      </div>
+
+      <!--LÓGICA AUTENTICACIÓN-->
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+          <span class="navbar-text">Bienvenido, <strong>{{ user.username }}</strong>  </span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white"  id="out-class" href="/logout"><strong>Logout</strong></a>
+      </li>
+      </li>
+      {% else %}
+      <li class="nav-item">
+          <a class="nav-link text-white" href="/login"> <strong>Login</strong></a>
+      </li>
+      {% endif %}
+      <!--FIN BLOQUE AUTENTICACIÓN-->
+  </div>
+</nav>

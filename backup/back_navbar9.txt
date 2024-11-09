@@ -1,0 +1,63 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-black">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="{% url 'index' %}">
+      <img src="{% static 'imgs/auto_verde.png' %}" alt="Sistema Vehículos" height="20">
+      <span class="navbar-text">Vehículos VVVFS</span>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <i class='bx bx-menu'></i>
+    </button>
+    {% if user.is_authenticated %}
+	    {% if user.is_superuser %}
+	      <div class="navbar-nav" id="opciones">
+          <a class="nav-link" aria-current="page" href="/">Inicio</a>
+         	<a class="nav-link" href="/listar">Listar</a>
+          <a class="nav-link" href="/vehiculos/add">Agregar</a>
+         	<a class="nav-link" href="/update">Editar</a>
+		      <a class="nav-link" href="/delete">Borrar</a>
+          <a class="nav-link" href="/usuarios">Usuarios</a>
+        </div>
+	      <a class="navbar-text">Bienvenido, <strong>{{ user.username }}</strong>&nbsp;</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+        <a class="nav-link text-white" id="out-class" href="{% url "logout_view" %}"><strong>Logout</strong></a>		
+	    {% elif user.groups.filter(name='Usuarios_crud').exists() %}
+	      <div class="navbar-nav" id="opciones">
+          <a class="nav-link" aria-current="page" href="/">Inicio</a>
+          <a class="nav-link" href="/listar">Listar</a>
+          <a class="nav-link" href="/vehiculos/add">Agregar</a>
+          <a class="nav-link" href="/update">Editar</a>
+		      <a class="nav-link" href="/delete">Borrar</a>
+        </div>
+        <a class="navbar-text">Bienvenido, <strong>{{ user.username }}</strong>&nbsp;</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+        <a class="nav-link text-white" id="out-class" href="{% url "logout_view" %}"><strong>Logout</strong></a>
+      {% elif user.groups.filter(name='Usuarios_std').exists() %}
+	      <div class="navbar-nav" id="opciones">
+          <a class="nav-link" aria-current="page" href="/">Inicio</a>
+         	<a class="nav-link" href="/listar">Listar</a>
+          </div>
+          <a class="navbar-text">Bienvenido, <strong>{{ user.username }}</strong>&nbsp;</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+          <a class="nav-link text-white" id="out-class" href="{% url "logout_view" %}"><strong>Logout</strong></a>
+      {% else %}
+        <div class="navbar-nav" id="opciones">
+          <a class="nav-link" aria-current="page" href="/">Inicio</a>
+          
+        </div>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{% url "login_view" %}"><strong>Login</strong></a>
+        </li>
+    {% endif %}
+    </div>
+</nav>

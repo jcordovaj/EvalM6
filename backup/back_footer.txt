@@ -1,0 +1,5 @@
+{% load static %}
+<footer class="py-5">
+    <p class="text-center fs-3 text-primary">Pendiente de desarrollar</p>
+    <p class="text-center fs-3 text-primary">usar footer de portfolio</p>
+</footer>

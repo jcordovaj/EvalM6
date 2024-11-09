@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<header>
+    <h1 class="text-center py-3">Inicie su Sesión</h1>
+    
+</header>
+<main class="form-signin w-100 m-auto">
+  <p>¿No estás registrado? <a href="{% url 'registro_view' %}" style="font-weight: bold; text-decoration: underline; color: red;">Regístrate AQUÍ</a></p>
+  <form action="" method="post">
+    {% csrf_token %}
+    
+    {% comment %} <h1 class="h3 mb-3 fw-normal text-center">Iniciar Sesión</h1> {% endcomment %}
+        
+    <div class="mb-3">
+      <label for="nom_usuario" class="form-label float-md-start">Nombre de Usuario</label>
+      <input type="text" class="form-control" name="username" id="nom_usuario">
+    </div>
+    <div class="mb-3">
+      <label for="pass_usuario" class="form-label float-md-start">Contraseña</label>
+      <input type="password" class="form-control" name="password" id="pass_usuario">
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
+    <div class="center-image">
+      <img class="mb-4" src={% static 'imgs/auto_verde.ico' %} alt="" width="72" height="57">
+    </div>
+    
+  </form>
+</main>
+
+{% endblock contenido %}

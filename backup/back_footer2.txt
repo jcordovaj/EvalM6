@@ -1,0 +1,23 @@
+{% load static %}
+<footer class="footer section" id="footer_section">
+    <div class="footer__container bd-grid">
+      <div class="footer__data">
+        <h2 class="footer__title">SÍGUEME...</h2>
+        <a href="https://github.com/jcordovaj" class="footer__social"><i class='bx bxl-github' ></i></a>
+        <a href="https://www.linkedin.com/in/jota-cordova-ba76607/" class="footer__social"><i class='bx bxl-linkedin' ></i></a>
+      </div>
+
+      <div class="footer__data">
+        <p class="footer__text">“Dreams are extremely important.</p>
+        <p class="footer__text"></p>
+        <p class="footer__text">You can’t do it unless you imagine it...”</p>
+        <p class="footer__text"><i class='bx bx-camera-movie'></i> George Lucas</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="footer__bordes">© 2024 Jota Cordova</p>
+      </div>
+    </div>
+</footer>

@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block titulo %}Listado de Vehículos{% endblock %}
+
+{% block carga_estaticos %}
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+{% endblock %}
+
+{% block contenido %}
+    <header>
+        <h1 class="text-center">{{ titulo }}</h1>
+    </header>
+
+    <main class="container">
+        <section class="py-5">
+            <h2 class="text-center mb-4">Listado de vehículos disponibles</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Serial carrocería</th>
+                        <th>Serial motor</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vehiculo in vehiculos %}
+                    <tr>
+                        <td>{{ vehiculo.marca }}</td>
+                        <td>{{ vehiculo.modelo }}</td>
+                        <td>{{ vehiculo.serial_carroceria }}</td>
+                        <td>{{ vehiculo.serial_motor }}</td>
+                        <td>{{ vehiculo.categoria }}</td>
+                        <td>{{ vehiculo.precio }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock %}

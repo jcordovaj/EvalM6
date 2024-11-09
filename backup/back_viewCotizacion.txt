@@ -1,0 +1,21 @@
+def cotizacion(request):
+    if request.method == 'POST':
+        form = CotizacionForm(request.POST)
+        if form.is_valid():
+            # Datos del solicitante
+            nombre  = form.cleaned_data['Déjenos su nombre']
+            email   = form.cleaned_data['Indique su email']
+            mensaje = form.cleaned_data['Haga sus consultas y oferte']
+            
+            # Enviar correo
+            send_mail(
+                'Solicitud de cotización',
+                f'Nombre: {nombre}\nEmail: {email}\nMensaje: {mensaje}',
+                'tu_correo@example.com',
+                ['tu_correo@example.com'],
+                fail_silently=False,
+            )
+            return render(request, 'cotizacion/cotizacion.html', {'form': form, 'mensaje_exito': 'Cotización enviada con éxito'})
+    else:
+        form = CotizacionForm()
+        return render(request, 'index.html', {'form': form})

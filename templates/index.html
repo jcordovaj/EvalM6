@@ -1,0 +1,80 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block titulo %} 
+  Venta Virtual de Vehiculos 
+{% endblock %}
+
+{% block carga_estaticos %}
+  <link rel="stylesheet" href="{% static "css/styles.css" %}">
+{% endblock %}
+
+{% block contenido %}
+  <header>
+    <h1 class="text-center py-3">{{ titulo }} </h1>
+  </header>
+  <main>
+    <section id="listado-vehiculos">
+      <h2 class="text-center py-5">Sistema de Venta Virtual Full Stack (SVVFS)</h2>
+      <h3 class="text-center py-3">Aproveche nuestras promociones de OFERVIEMBRE</h3>
+      {% if vehiculos %}
+        <div class="row justify-content-evenly g-3">
+          {% for vehiculo in vehiculos %}
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card w-100">
+                <img src="{% static vehiculo.imagen %}" class="card-img-top" alt="{{vehiculo.nombre}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ vehiculo.nombre }}</h5>
+                  <p class="text-danger text-center" id="card-oferta"> <strong>{{ vehiculo.descripcion }}</strong></p>
+                  <button type="button" class="btn btn-primary" id="btnCotizar_{{ forloop.counter }}">Cotizar</button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      {% else %}
+        <p class="text-danger text-center">No existen productos</p>
+      {% endif %}
+    </section>
+  </main>
+
+  <div class="modal fade" id="cotizacionModal" tabindex="-1" aria-labelledby="cotizacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cotizacionModalLabel">Solicitud de Cotización</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      // Seleccionar todos los botones con IDs que comiencen con "btnCotizar_"
+      document.querySelectorAll('button[id^="btnCotizar_"]').forEach(button => {
+        button.addEventListener('click', () => {
+          // Obtener el ID del botón
+          const buttonId = button.id;
+          $.ajax({
+            url: `{% url 'cotizacion' %}`,
+            type: 'POST', // Cambiar a POST
+            data: $(this).closest('form').serialize(), // Enviar los datos del formulario
+            success: function(data) {
+            });
+              $('#cotizacionModal .modal-body').html(data);
+              $('#cotizacionModal').modal('show');
+            }
+          });
+        });
+      });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,16 @@
+# ELIMINAR VEHICULO
+
+class VehiculoDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Vehiculo
+    template_name = "vehiculos/delete_vehiculo.html"
+    success_url = reverse_lazy('listar')
+    permission_required = 'vehiculo.delete_vehiculo'
+    
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            messages.error(self.request, "No dispone de permisos para eliminar registros.")
+            return redirect("index")
+        
+        else:
+            messages.info(self.request, "Para borrar un registro, primero inicie sesión.")
+            return redirect("login")

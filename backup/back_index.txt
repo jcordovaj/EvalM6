@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Venta Virtual de Vehiculos {% endblock  %}
+
+{% block carga_estaticos %}
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+{% endblock %}
+
+{% block  contenido %}
+    <header>
+        <h1 class="text-center py-3">{{ titulo }} </h1>
+    </header>
+    <main>
+        <section id="listado-vehiculos">
+            <h2 class="text-center py-5">Sistema de Venta Virtual de Vehículos Full Stack (SVVVFS)</h2>
+            <h2 class="text-center py-3">Aproveche nuestras promociones de OFERVIEMBRE</h2>
+            {% if  vehiculos %}
+                <div class="row justify-content-evenly g-3">
+                    {% for  vehiculo in vehiculos %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card w-100">
+                                <img src="{% static vehiculo.imagen %}" class="card-img-top" alt="{{vehiculo.nombre}}">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ vehiculo.nombre }}</h5>
+                                  <p class="text-danger text-center" id="card-oferta"> <strong>{{ vehiculo.descripcion }}</strong></p>
+                                  <a href="form-cotiza" class="btn btn-primary">Cotizar</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <p class="text-danger text-center">No existen productos</p>
+            {% endif %}
+        </section>
+    </main>
+
+{% endblock  %}

@@ -1,0 +1,35 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "css/styles.css" %}">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand text-white" id="mi-brand" href="{% url 'index' %}">
+      <img src="{% static 'imgs/auto_verde.png' %}" alt="Sistema Vehículos" height="20">
+      <span class="navbar-text">Vehículos VVVFS</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon custom-toggler"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" id="opciones">
+        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+        {% if user.is_authenticated %}
+          <a class="nav-link" href="/listar">Catálogo</a>
+        {% endif %}
+        {% if perms.vehiculo.add_vehiculo%}
+          <a class="nav-link" href="/vehiculos/add">Agregar</a>
+        {% endif %}
+        {% if user.is_superuser %}
+          <a class="nav-link" href="/usuarios">Listar Usuarios</a>
+  
+        {% endif %}
+        {% if user.is_authenticated %}
+          <a class="navbar-text">Bienvenido, <strong>{{ user.username }}</strong></a>
+          <a class="nav-link text-white" href="{% url 'logout_view' %}">Logout</a>
+        {% else %}
+          <a class="nav-link text-white" href="{% url 'login_view' %}">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

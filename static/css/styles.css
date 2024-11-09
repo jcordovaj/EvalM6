@@ -1,0 +1,202 @@
+/*     SECCIÓN: Estilos globales
+----------------------------------------------------------*/
+:root{
+    --header-height: 3rem;
+    --font-medium: 500;
+    --first-color: #000000;
+    --white-color: #FAFAFF;
+	--red-color: #F40808;
+    --dark-color: #2A3B47;
+    --text-color: #ffffff;
+    --body-font: Poppins, Montserrat, sans-serif;
+    --big-font-size: 6.25rem;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+	--mb-1: .5rem; /* Márgenes*/
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+	--z-fixed: 100; /*z index*/
+}
+
+/* GALERIA */
+#listado-vehiculos img {
+    aspect-ratio: 3/2;
+    width: 100%;
+    align-content: center;
+}
+
+#card-oferta {
+    color:red
+}
+
+.card-text {
+    color: red
+}
+
+/* NAVBAR */
+.bx-menu {
+    color: #ffffff; 
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: white;
+}
+
+.navbar-dark  {
+    background-color: white;
+  }
+
+#mi-brand {
+    color: white;
+}
+
+#colder1 {
+    text-align: end;
+}
+
+#colder2 {
+    text-align: end;
+}
+
+#colder3 {
+    text-align: end;
+}
+
+#opciones {
+    color: white;
+    text-align: left; /* Asegurar alineación a la izquierda */
+}
+
+.navbar-brand, .navbar-nav .nav-link, .navbar-text {
+    color: white;
+}
+
+.navbar-nav {
+    justify-content: right; /* Align items to the left */
+    color: white;
+    text-align: left
+  }
+
+  .navbar-nav .navbar-text,
+  .navbar-nav .nav-link:last-child {
+    margin-left: auto; /* Push the last item to the right */
+  }
+#out-class1 {
+    text-align: right;
+}
+
+#out-class2 {
+    text-align: right;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 5px;
+}
+
+.navbar-brand .navbar-text .nav-link .nav-item {
+    vertical-align: middle;
+}
+
+/* FORMULARIO AGREGAR VEHICULO */
+.form-container {
+    background-color: #a19c9c; /* Fondo del formulario */
+    padding: 100px;              /* Espacio interno del formulario */
+    border-radius: 10px;         /* Bordes redondeados */
+}
+
+/* FORMULARIO LOGIN */ 
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+/* SECCION: Footer
+----------------------------------------------------------*/
+#footer_section{
+    background-color: black;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.center-image {
+    text-align: center;
+}
+
+#footer_col1{
+    align-content: left;
+    margin-left: 30px;
+    padding: 15px;
+}
+
+#footer_col2{
+    align-content: right;
+    margin-right: 30px;
+    padding-top: 15px;
+}
+.footer__container{
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__title{
+    font-size: H2;
+    color: white;
+    margin-left: 5px; 
+	text-align: justify;
+}
+.footer__link{
+    padding: .25rem 0;
+}
+.footer__link:focus{
+    color: white;
+	background-color:white;
+}
+
+.footer__social{
+    font-size: 1.4rem;
+    margin-right: var(--mb-1);
+}
+.footer__social:focus{
+    color: white;
+}
+
+.footer__bordes{
+    padding-left: 2rem;
+    color: white;
+}  
+
+.footer__text{
+    color: white;
+}
+
+.bd-grid{						 
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 2rem;       
+    width: calc(100% - 2rem);
+    margin-left: var(--mb-2);
+    margin-right: var(--mb-2);
+}
+
+/* FORMULARIO LISTAR*/

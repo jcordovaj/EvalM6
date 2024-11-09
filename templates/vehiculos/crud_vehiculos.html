@@ -1,0 +1,93 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block titulo %}Listar Vehiculos CRUD-Modal{% endblock %}
+
+{% block carga_estaticos %}
+  <link rel="stylesheet" href="{% static 'css/crud_vehiculos.css' %}">
+{% endblock %}
+
+<body>
+  <div class="container">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-xs-6">
+              <h2>Catálogo de <b>Vehículos</b></h2>
+            </div>
+            <div class="col-xs-6">
+              <a href="#addVehiculoModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar vehículo</span></a>
+              <a href="#deleteVehiculoModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>
+                <span class="custom-checkbox">
+                  <input type="checkbox" id="selectAll">
+                  <label for="selectAll"></label>
+                </span>
+              </th>
+              <th>Año</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Serial carrocería</th>
+              <th>Serial motor</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Condición de Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for vehiculo in vehiculos %}
+            <tr>
+              <td>
+                <span class="custom-checkbox">
+                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                  <label for="checkbox1"></label>
+                </span>
+              </td>
+              <td>{{ vehiculo.year }}</td>
+              <td>{{ vehiculo.marca }}</td>
+              <td>{{ vehiculo.modelo }}</td>
+              <td>{{ vehiculo.serial_carroceria }}</td>
+              <td>{{ vehiculo.serial_motor }}</td>
+              <td>{{ vehiculo.categoria }}</td>
+              <td>{{ vehiculo.precio }}</td>
+              <td>
+                {% if vehiculo.precio <= 10000 %}
+                  Bajo
+                {% elif vehiculo.precio <= 30000 %}
+                  Medio
+                {% else %}
+                  Alto
+                {% endif %}
+              </td>
+              <td>
+                <a href="#editVehiculoModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                <a href="#deleteVehiculoModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="clearfix">
+          <div class="hint-text">Mostrando <b>5</b> de <b>25</b> registros</div>
+          <ul class="pagination">
+            <li class="page-item disabled"><a href="#">Previo</a></li>
+            <li class="page-item"><a href="#" class="page-link">1</a></li>
+            <li class="page-item"><a href="#" class="page-link">2</a></li>
+            <li class="page-item active"><a href="#" class="page-link">3</a></li>
+            <li class="page-item"><a href="#" class="page-link">4</a></li>
+            <li class="page-item"><a href="#" class="page-link">5</a></li>
+            <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

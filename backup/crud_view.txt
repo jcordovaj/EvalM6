@@ -1,0 +1,23 @@
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Vehiculo  # Reemplaza 'Vehiculo' con tu modelo
+
+def agregar_crud_vehiculo(request):
+    if request.method == 'POST':
+        # Se capturan los datos desde el formulario
+        year              = request.POST.get('año')
+        marca             = request.POST.get('marca')
+	modelo            = request.POST.get('modelo')
+        serial_carroceria = request.POST.get('serial carrocería')
+	serial_motor      = request.POST.get('serial motor')
+        categoria         = request.POST.get('categoria')
+	precio		  = request.POST.get('precio')
+	descripcion	  = request.POST.get('descripcion')        
+        
+	# Crear un nuevo objeto Vehiculo
+        vehiculo = Vehiculo(year=year, marca=marca, modelo=modelo, serial_carroceria=serial_carroceria, serial_motor=serial_motor, categoria=categoria, precio=precio)
+        vehiculo.save()
+
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
