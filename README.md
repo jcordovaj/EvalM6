@@ -68,3 +68,10 @@ Este proyecto tiene como objetivo desarrollar una plataforma web para la venta d
 
 * **Usuario:** admin
 * **Pass:** 123456
+
+**Clona el proyecto:**
+
+https://github.com/jcordovaj/EvalM6.git
+
+Jota Cordova
+2024
